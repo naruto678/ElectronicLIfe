@@ -1,16 +1,7 @@
-const plan=
-["############################",
-"#             #  #     o   ##",
-"#                           #",
-"#             #####         #",
-"##      # #      ##         #",
-"#        ## # #     #       #",
-"# #          ##    #        #",
-"# ##       ##               #",
-"# #    #     o              #",
-"# o     #     o ##        # #",
-"#             #             #",
-"############################"];
+
+const plan=require('./plan.js').plan;
+
+
 let World = require('./World.js').World;
 
 let legend = {
@@ -21,4 +12,4 @@ let legend = {
 
 
 let world = new World(plan, legend);
-console.log(world);
+console.log(world.toString());
