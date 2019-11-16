@@ -17,5 +17,15 @@ Grid.prototype.set=function(vector, value){
 Grid.prototype.toString=function(){
 	return `${this.width} and ${this.height}`;
 }
+Grid.prototype.forEach=function(f,context){
+	for(let x=0;x<this.grid.width;x++){
+		for(let y=0;y<this.grid.height;y++)
+		{
+			let value=this.space[x+this.width*y];
+			if(value!=null)
+				f.call(context,value,new Vector(x,y));
+		}
+	}
+}
 exports.Grid=Grid;
 exports.Vector=Vector;

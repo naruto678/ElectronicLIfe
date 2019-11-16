@@ -41,19 +41,19 @@ World.prototype.toString=function(){
 	return output;
 }
 
-
-World.prototype.forEach=function(f,context){
-	for(let x=0;x<this.grid.width;x++){
-		for(let y=0;y<this.grid.height;y++)
-		{
-			let value=this.space[x+this.width*y];
-			if(value!=null)
-				f.call(context,value,new Vector(x,y));
+World.prototype.turn=function(){
+	let acted=[];
+	this.grid.forEach(function(critter,vector){
+		if(critter.act && acted.indexOf(critter)==-1){
+			acted.push(critter);
+			this.letAct(critter,vector);
 		}
-	}
+	},this);
+	
 }
-
-
+World.prototype.letAct=function(critter,vector){
+	
+}
 
 exports.World=World;
 exports.elementFromChar=elementFromChar;
