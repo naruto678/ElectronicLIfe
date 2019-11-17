@@ -1,5 +1,8 @@
 let Grid=require('./Grid.js').Grid;
 let Vector=require('./Grid.js').Vector;
+let BouncingCritter=require('./Utils.js').BouncingCritter;
+let Wall=require('./Utils.js').Wall;
+
 
 function charFromElement(element){
 	if(element==null)
@@ -7,10 +10,10 @@ function charFromElement(element){
 	return element.originalChar;
 }
 function elementFromChar(legend,char){
+
 	if(char==' ')
 		return null;
-	let element=Object.create(null);
-	element.originalChar=char;
+	let element=new legend[char]();
 	return element;
 }
 
@@ -19,6 +22,8 @@ function World(map,legend){
 	The world object takes a plan and the legend . The legend tells what each character is suppposed to be 
 	*/
 		let grid=new Grid(map[0].length,map.length);
+		console.log(legend);	
+		
 		this.map=map;
 		this.legend=legend;
 		this.grid=grid;
@@ -26,6 +31,7 @@ function World(map,legend){
 
 		map.forEach(function(line,y){
 			for(var x=0;x<line.length;x++)
+				
 				grid.set(new Vector(x,y),elementFromChar(legend,line[x]));
 		})
 }

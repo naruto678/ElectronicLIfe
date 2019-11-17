@@ -1,3 +1,5 @@
+let BouncingCritter=require('./Utils.js').BouncingCritter;
+let Wall=require('./Utils').Wall;
 
 const plan=require('./plan.js').plan;
 
@@ -5,8 +7,8 @@ const plan=require('./plan.js').plan;
 let World = require('./World.js').World;
 
 let legend = {
-	'#': 'wall',
-	'o': 'bouncing-critter'
+	'#': Wall,
+	"o": BouncingCritter
 };
 
 
