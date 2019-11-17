@@ -2,6 +2,9 @@ function Vector(x,y){
 	this.x=x;
 	this.y=y;
 }
+Vector.prototype.plus=function(other){
+	return new Vector(other.x+this.x,other.y+this.y);
+}
 
 function Grid(width,height){
   this.space=new Array(width*height);
@@ -17,6 +20,10 @@ Grid.prototype.set=function(vector, value){
 Grid.prototype.toString=function(){
 	return `${this.width} and ${this.height}`;
 }
+Grid.prototype.isInside=function(vector){
+	return vector.x>=0 && vector.x<this.width && vector.y>=0 && vector.y<this.height;
+}
+
 Grid.prototype.forEach=function(f,context){
 	for(let x=0;x<this.grid.width;x++){
 		for(let y=0;y<this.grid.height;y++)
