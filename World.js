@@ -14,6 +14,7 @@ function elementFromChar(legend,char){
 	if(char==' ')
 		return null;
 	let element=new legend[char]();
+	element.originalChar=char;
 	return element;
 }
 

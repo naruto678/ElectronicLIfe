@@ -8,15 +8,13 @@ BouncingCritter.prototype.act=function(view){
 		this.direction=view.find(' ') || 's';
 	return {'type':'move','direction':this.direction};
 }
-BouncingCritter.prototype.toString=function(){
-	return `C`;
-}
+
 
 function randomElement(array){
 	return array[Math.floor(Math.random()*array.length)];
 }
 function Wall(){
-	console.log('A new wall is being declared');
+
 }
 
 exports.BouncingCritter=BouncingCritter;
