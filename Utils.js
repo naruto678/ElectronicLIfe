@@ -1,7 +1,7 @@
 let directionNames='n e s w ne nw se sw'.split(' ');
 function BouncingCritter(){
 		this.direction=randomElement(directionNames);
-		console.log(`A new critter is being declared`);
+		
 }
 BouncingCritter.prototype.act=function(view){
 	if(view.look(this.direction)!=' ')

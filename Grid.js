@@ -25,8 +25,8 @@ Grid.prototype.isInside=function(vector){
 }
 
 Grid.prototype.forEach=function(f,context){
-	for(let x=0;x<this.grid.width;x++){
-		for(let y=0;y<this.grid.height;y++)
+	for(let x=0;x<this.width;x++){
+		for(let y=0;y<this.height;y++)
 		{
 			let value=this.space[x+this.width*y];
 			if(value!=null)

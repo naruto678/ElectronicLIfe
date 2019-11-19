@@ -2,6 +2,8 @@ let Grid=require('./Grid.js').Grid;
 let Vector=require('./Grid.js').Vector;
 let BouncingCritter=require('./Utils.js').BouncingCritter;
 let Wall=require('./Utils.js').Wall;
+let View=require('./View.js').View;
+let directions=require('./Utils.js').directionNames;
 
 
 function charFromElement(element){
@@ -23,7 +25,7 @@ function World(map,legend){
 	The world object takes a plan and the legend . The legend tells what each character is suppposed to be 
 	*/
 		let grid=new Grid(map[0].length,map.length);
-		console.log(legend);	
+
 		
 		this.map=map;
 		this.legend=legend;
@@ -59,7 +61,22 @@ World.prototype.turn=function(){
 	
 }
 World.prototype.letAct=function(critter,vector){
-	
+	let act=critter.act(new View(this,vector));
+	if(act &&  act.type=='move')
+	{
+		let dest=this.checkDestination(act,vector);
+		if(dest!=null && this.grid.get(dest)==null){
+			this.grid.set(vector,null);
+			this.grid.set(dest,criiter);
+		}
+	}
+
+}
+World.prototype.checkDestination=function(action,vector){
+	if(directions.hasOwnProperty[action.direction]){
+		let dest=vector.plus(directions[action.direction]);
+		if(this.grid.isInside(dest))return dest;
+	}
 }
 
 exports.World=World;

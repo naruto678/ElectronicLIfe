@@ -1,3 +1,10 @@
+let Vector=require('./Grid.js').Vector;
+
+function charFromElement(element){
+	if(element==null)
+		return ' ';
+		return element.orginalChar;
+}
 var directions={
 	'n':new Vector(0,1),
 	's':new Vector(0,-1),
@@ -38,3 +45,5 @@ View.prototype.find=function(char){
 	if(found.length==0) return null;
 	return this.randomElement(found);
 }
+
+exports.View=View;
