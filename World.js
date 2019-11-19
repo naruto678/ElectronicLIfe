@@ -3,7 +3,7 @@ let Vector=require('./Grid.js').Vector;
 let BouncingCritter=require('./Utils.js').BouncingCritter;
 let Wall=require('./Utils.js').Wall;
 let View=require('./View.js').View;
-let directions=require('./Utils.js').directionNames;
+let directions=require('./View.js').directions;
 
 
 function charFromElement(element){
@@ -50,6 +50,31 @@ World.prototype.toString=function(){
 	return output;
 }
 
+World.prototype.letAct=function(critter,vector){
+
+	let act=critter.act(new View(this,vector));
+
+	if(act &&  act.type=='move')
+	{
+		let dest=this.checkDestination(act,vector);
+		if(dest!=null && this.grid.get(dest)==null){
+			this.grid.set(vector,null);
+			this.grid.set(dest,critter);
+		}
+	}
+
+}
+
+World.prototype.checkDestination=function(action,vector){
+		if(directions.hasOwnProperty(action.direction)){
+			let dest=vector.plus(directions[action.direction]);
+				
+			if(this.grid.isInside(dest))return dest;
+		}
+}
+
+
+
 World.prototype.turn=function(){
 	let acted=[];
 	this.grid.forEach(function(critter,vector){
@@ -59,24 +84,6 @@ World.prototype.turn=function(){
 		}
 	},this);
 	
-}
-World.prototype.letAct=function(critter,vector){
-	let act=critter.act(new View(this,vector));
-	if(act &&  act.type=='move')
-	{
-		let dest=this.checkDestination(act,vector);
-		if(dest!=null && this.grid.get(dest)==null){
-			this.grid.set(vector,null);
-			this.grid.set(dest,criiter);
-		}
-	}
-
-}
-World.prototype.checkDestination=function(action,vector){
-	if(directions.hasOwnProperty[action.direction]){
-		let dest=vector.plus(directions[action.direction]);
-		if(this.grid.isInside(dest))return dest;
-	}
 }
 
 exports.World=World;

@@ -10,7 +10,7 @@ var directions={
 	's':new Vector(0,-1),
 	'e':new Vector(1,0),
 	'w':new Vector(-1,0),
-	'ne': new Vector(1,1),
+	'ne':new Vector(1,1),
 	'nw': new Vector(-1,1),
 	'se': new Vector(1,-1),
 	'sw':new Vector(-1,-1)
@@ -22,16 +22,20 @@ function View(world,vector){
 
 }
 View.prototype.look=function(dir){
-	let target=this.vector.plus(directions[dir]);
-	if(this.world.grid.isInside(target))
-		return charFromElement(this.world.grid.get(target));
-	return '#';
+		if(directions.hasOwnProperty(dir)){		
+				let target=this.vector.plus(directions[dir]);
+				if(this.world.grid.isInside(target))
+					return charFromElement(this.world.grid.get(target));
+		}
+		return '#';
+		
+	
 }
 View.prototype.findAll=function(char){
 	let found=[];
 	for(dir in directions){
-		if(this.look(dir)==ch)
-			found.push(ch);
+		if(this.look(dir)==char)
+			found.push(char);
 	}
 	return found;
 }
@@ -47,3 +51,4 @@ View.prototype.find=function(char){
 }
 
 exports.View=View;
+exports.directions=directions;
