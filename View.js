@@ -1,5 +1,3 @@
-let Vector=require('./Grid.js').Vector;
-
 function charFromElement(element){
 	if(element==null)
 		return ' ';
@@ -49,6 +47,3 @@ View.prototype.find=function(char){
 	if(found.length==0) return null;
 	return this.randomElement(found);
 }
-
-exports.View=View;
-exports.directions=directions;

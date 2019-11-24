@@ -1,11 +1,3 @@
-let Grid=require('./Grid.js').Grid;
-let Vector=require('./Grid.js').Vector;
-let BouncingCritter=require('./Utils.js').BouncingCritter;
-let Wall=require('./Utils.js').Wall;
-let View=require('./View.js').View;
-let directions=require('./View.js').directions;
-let World=require('./World.js').World;
-
 let actionTypes=Object.create(null);
 
 

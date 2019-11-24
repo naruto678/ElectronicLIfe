@@ -19,7 +19,3 @@ function randomElement(array){
 function Wall(){
 
 }
-
-exports.BouncingCritter=BouncingCritter;
-exports.Wall=Wall;
-exports.directionNames=directionNames;

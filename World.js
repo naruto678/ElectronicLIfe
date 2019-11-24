@@ -1,40 +1,30 @@
-let Grid=require('./Grid.js').Grid;
-let Vector=require('./Grid.js').Vector;
-let BouncingCritter=require('./Utils.js').BouncingCritter;
-let Wall=require('./Utils.js').Wall;
-let View=require('./View.js').View;
-let directions=require('./View.js').directions;
+function elementFromChar(legend, char){
 
-
-function charFromElement(element){
-	if(element==null)
-		return " ";
-	return element.originalChar;
-}
-function elementFromChar(legend,char){
-
-	if(char==' ')
-		return null;
+	if(char ==' ') return null;
+	console.log(char);
 	let element=new legend[char]();
 	element.originalChar=char;
 	return element;
 }
+
+function charFromElement(element){
+	if(element==null) return ' ';
+	return element.originalChar;
+}
+
 
 function World(map,legend){
 	/*
 	The world object takes a plan and the legend . The legend tells what each character is suppposed to be 
 	*/
 		let grid=new Grid(map[0].length,map.length);
-
 		
 		this.map=map;
 		this.legend=legend;
 		this.grid=grid;
-	
-
+		
 		map.forEach(function(line,y){
 			for(var x=0;x<line.length;x++)
-				
 				grid.set(new Vector(x,y),elementFromChar(legend,line[x]));
 		})
 }
@@ -86,6 +76,3 @@ World.prototype.turn=function(){
 	
 }
 
-exports.World=World;
-exports.elementFromChar=elementFromChar;
-exports.charFromElement=charFromElement;

@@ -34,5 +34,3 @@ Grid.prototype.forEach=function(f,context){
 		}
 	}
 }
-exports.Grid=Grid;
-exports.Vector=Vector;
