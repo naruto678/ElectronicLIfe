@@ -30,14 +30,15 @@ function World(map,legend){
 }
 
 World.prototype.toString=function(){
-	let output='';
+	let arr=[];
 	for(let x=0;x<this.grid.width;x++){
+		let output='';
 		for(let y=0;y<this.grid.height;y++){
 			output+=charFromElement(this.grid.get(new Vector(x,y)));
 		}
-		output+='\n';
+		arr.push(output);
 	}
-	return output;
+	return arr;
 }
 
 World.prototype.letAct=function(critter,vector){
