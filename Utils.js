@@ -19,6 +19,21 @@ function randomElement(array){
 function Wall(){
 
 }
+function Plant{
+	this.energy=3+Math.random()*4;
+}
+Plant.prototype.act=function(view){
+	if(energy>=15)
+		let space=view.find(' ');
+	if(space) return {move: 'reproduce', direction:space};
+	if(energy <20) return {move:'grow'};
+
+}
+
+
+
+
+
 
 exports.BouncingCritter=BouncingCritter;
 exports.Wall=Wall;
