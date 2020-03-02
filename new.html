@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ 
+   <style>
+    .colBox{
+     width:10rem;
+     height:10rem;
+     border:1px solid black;
+     text-align:center;
+     font-size:5rem;
+     background-color:green;
+    
+    }
+    
+    .app{
+      width:31rem;
+      height:31rem;
+      margin:auto;
+      border:1px solid black;
+      display:flex;
+      flex-wrap:wrap;
+    }
+    
+    .colBox:hover{
+      background-color:yellow;
+    }
+  
+  </style>
+</head>
+
+<body>
+
+
+  <div class="app" ng-app="" >
+    <div  class="colBox" onclick="myFunction(1)" id="col1"></div>
+    <div  class="colBox" onclick="myFunction(2)" id="col2"></div>
+    <div  class="colBox" onclick="myFunction(3)" id="col3"></div>
+    <div  class="colBox" onclick="myFunction(4)" id="col4"></div>
+    <div  class="colBox" onclick="myFunction(5)" id="col5"></div>
+    <div  class="colBox" onclick="myFunction(6)" id="col6"></div>
+    <div  class="colBox" onclick="myFunction(7)" id="col7"></div>
+    <div  class="colBox" onclick="myFunction(8)" id="col8"></div>
+    <div  class="colBox" onclick="myFunction(9)" id="col9"></div>
+    
+  </div>
+  
+  <div id="box">
+    
+  </div>
+  
+  <script>
+    let even=true;
+    let count=0;
+    let winningCombos=[[1,2,3],
+    									[4,5,6],
+                      [7,8,9],
+                      [1,4,7],
+                      [2,5,8],
+                      [3,6,9],
+                      [1,5,9],
+                      [3,5,7]];
+    let values=["X","O"];
+    function checkWinner(){
+
+    	
+    	let elements=document.getElementsByClassName("colBox");
+    
+     	for(let i=0;i<winningCombos.length;i++){
+      	let winningCombo=winningCombos[i];
+        let firstElement=elements[winningCombo[0]-1];
+        let secondElement=elements[winningCombo[1]-1];
+        let thirdElement=elements[winningCombo[2]-1];
+       	
+
+        if(firstElement && secondElement && thirdElement)
+          if(firstElement.innerHTML.length >0 && secondElement.innerHTML.length>0 && thirdElement.innerHTML.length>0)
+        	  if(firstElement.innerHTML==secondElement.innerHTML && secondElement.innerHTML==thirdElement.innerHTML){
+              
+              return true;
+            }
+        
+        
+      }
+      return false;
+    }
+
+
+    function myFunction(num){
+    	
+	   	
+      let element=document.getElementById("col"+num);
+      element.innerHTML=`${values[count++]}`;
+      count%=2;
+      if(checkWinner()){
+        setTimeout(null,2);
+        alert(`${count+1} has won the game`);
+        clearBoard();
+      }
+      
+    
+    even=false;
+
+	   
+    }
+    function clearBoard(){
+      for(let i=1;i<=9;i++)
+        document.getElementById("col"+i).innerHTML=null;
+      
+    }
+    
+  </script>
+  
+
+</body>
+</html>
+
