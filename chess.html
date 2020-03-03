@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+  <title>MyLichess</title>
+  <style>
+     .container{
+     
+       margin:auto;
+       height:35rem;
+       width:35rem;
+       display:flex;
+       flex-wrap:wrap;
+       margin-top:10%;
+       align-content: flex-start;
+       text-align:center;
+       
+      }
+      .square{
+      
+        height:4rem;
+        width:4rem;
+        
+        text-align:center;
+        display:inline-block;
+                
+      }
+      
+      .odd{
+        background-color:black;
+      }
+      
+      .even{
+        background-color:green;
+      }
+      
+      .odd:hover{
+        background-color:#FAEBD7;
+      }
+      .even:hover{
+         background-color:#FAEBD7;
+      }
+      
+      
+     
+ 
+    
+   
+      
+  </style>
+</head>
+
+ <body>
+   <div class="container">
+
+   
+    </div>
+ 
+ </body>
+ 
+ <script>
+ 				let pieces=["K","Q","P","Kn","Rk","B"];
+        let count=0;
+ 				let container=document.getElementsByClassName("container")[0];
+        let tempEvenClass="square even";
+        let tempOddClass="square odd";
+          
+        for(let i=0;i<64;i++){
+					let function_string="placePieces("+i+")";
+          if(i%8==0 && i!=0){
+						let temp=tempEvenClass;
+            tempEvenClass=tempOddClass;
+            tempOddClass=temp;
+          }
+          
+          let square=document.createElement("div");
+       
+          if(i%2==0)
+          	square.setAttribute("class",tempEvenClass);
+         	else
+          	square.setAttribute("class",tempOddClass);
+          square.setAttribute("onclick",function_string);
+          container.appendChild(square);
+          
+          
+          
+        }
+        
+        function placePieces(index){
+        	let square=document.getElementsByClassName("square")[index];
+         	square.innerHTML=pieces[count++];
+          count=count%pieces.length;
+        }
+        
+ 	
+ </script>
+ 
+</html>
